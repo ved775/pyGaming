@@ -1,0 +1,47 @@
+{% extends "headerlogin.html" %}
+
+{% block title %}Feedback - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="col-md-6">
+        <div class="card bg-dark bg-opacity-75 text-light shadow p-4">
+            <h3 class="text-center mb-4 text-white">Share Your Feedback</h3>
+
+            <!-- Display Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('feedback') }}">
+                <div class="mb-3">
+                    <label for="game" class="form-label">Select Game</label>
+                    <select id="game" name="game" class="form-select bg-secondary bg-opacity-50 text-light border-0" required>
+                        <option value="1">Enemy spawner</option>
+                        <option value="2">Doom</option>
+                        <option value="3">Flappy bird</option>
+                        <option value="4">car game</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Feedback</label>
+                    <textarea id="message" name="message" rows="5" class="form-control bg-secondary bg-opacity-50 text-light border-0" required></textarea>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('home') }}" class="text-white link-underline link-underline-opacity-0">Back to Home</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

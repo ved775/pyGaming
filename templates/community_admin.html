@@ -1,0 +1,21 @@
+{% extends "headeradmin.html" %}
+
+{% block title %}Community Admin - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5 text-white">
+    <h1 class="text-white">Community Section</h1>
+    <form method="POST" class="mt-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">Post Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Post Content</label>
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Post</button>
+        <a href="{{ url_for('admin_community') }}" class="btn btn-primary ms-2">See All Posts</a>
+    </form>
+</div>
+{% endblock %}

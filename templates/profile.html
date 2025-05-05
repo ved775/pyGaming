@@ -1,0 +1,59 @@
+{% if user[1] == 'admin' %}
+    {% extends "headeradmin.html" %}
+{% else %}
+    {% extends "headerlogin.html" %}
+{% endif %}
+
+
+{% block title %}Profile - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-white">
+    <h2 class="text-center">My Profile</h2>
+
+    <div class="card p-4 bg-dark text-white">
+        <div class="text-center">
+            <!-- Display Profile Picture -->
+            <img id="profileImage" src="{{ url_for('static', filename='uploads/' + (user[3] if user[3] else 'default.png')) }}" class="rounded-circle" width="150" height="150">
+            <br><br>
+            
+            <!-- File Upload -->
+            <input type="file" id="profilePicInput" accept="image/*">
+            <button class="btn btn-success mt-2" id="uploadButton">Upload</button>
+        </div>
+
+        <hr>
+        <p><strong>Name:</strong> {{ user[4] }}</p>
+        <p><strong>Email:</strong> {{ user[0] }}</p>
+        <p><strong>Role:</strong> {{ user[1] }}</p>
+        <p><strong>Created At:</strong> {{ user[2] }}</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById("uploadButton").addEventListener("click", function() {
+        let fileInput = document.getElementById("profilePicInput");
+        let file = fileInput.files[0];
+
+        if (!file) {
+            alert("Please select a file.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("profile_pic", file);
+
+        fetch("{{ url_for('profile') }}", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert("Profile picture updated!");
+            location.reload();
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "headerlogin.html" %}
+
+{% block title %}Games - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="content container text-center mt-5">
+    <h1 class="text-white" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">Games Section</h1>
+    <p class="lead text-white" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);">Select a game to start playing!</p>
+
+    <!-- Games Grid -->
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 mt-4 mb-5 min-vh-100">
+        {% for g in game %}
+        <div class="col">
+            <div class="card text-black shadow-lg">
+                <img src="{{ url_for('static', filename='uploads/' ~ g.profile_pic) }}" class="card-img-top" alt="{{ g.game_name }}">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h5 class="card-title mb-3">{{ g.game_name }}</h5>
+                    <div class="d-flex justify-content-between gap-2 w-100">
+                        <a href="{{ url_for('play_game', game_name=g.game_name) }}" class="btn btn-primary flex-fill">Play Now</a>
+                        <button class="btn btn-success flex-fill" data-bs-toggle="modal" data-bs-target="#leaderModal{{ g.id }}">Leader</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+        <!-- Leader Modal -->
+        <div class="modal fade" id="leaderModal{{ g.id }}" tabindex="-1" aria-labelledby="leaderModalLabel{{ g.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-start">
+              <div class="modal-header">
+                <h5 class="modal-title" id="leaderModalLabel{{ g.id }}">Leaderboard - {{ g.game_name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {% set leader = db.get_leader_record(g.id) %}
+                {% if leader %}
+                  <p><strong>Player:</strong> {{ leader.u_name }}</p>
+                  <p><strong>Score:</strong> {{ leader.score }}</p>
+                {% else %}
+                  <p>No leader yet for this game.</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>        
+        {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}

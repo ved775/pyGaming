@@ -1,0 +1,35 @@
+{% extends "headeradmin.html" %}
+
+{% block title %}All Audit - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5 min-vh-100">
+    <h2 class="text-center text-white">All Users Audits</h2>
+
+    {% if all_audits %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>E-mail</th>
+                    <th>Login at</th>
+                    <th>Logout at</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for useraudit in all_audits %}
+                    <tr>
+                        <td>{{ useraudit[0] }}</td>  
+                        <td>{{ useraudit[1] }}</td>  
+                        <td>{{ useraudit[2] }}</td>  
+                        <td>{{ useraudit[3] }}</td>  
+                      
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+</div>
+{% endblock %}

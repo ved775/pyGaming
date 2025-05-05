@@ -1,0 +1,38 @@
+{% extends "header.html" %}
+
+{% block title %}Forgot Password - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="col-md-4">
+        <div class="card bg-dark bg-opacity-75 text-light shadow p-4">
+            <h3 class="text-center mb-4 text-white">Forgot Password</h3>
+
+            <!-- Display Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('forget_password') }}">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Enter your Email</label>
+                    <input type="email" id="email" name="email" class="form-control bg-secondary bg-opacity-50 text-light border-0" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Send OTP</button>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('login') }}" class="text-primary">Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

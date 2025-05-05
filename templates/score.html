@@ -1,0 +1,39 @@
+{% extends "headerlogin.html" %}
+
+{% block title %}Leaderboard - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="content container mt-5 text-center min-vh-100 mb-5">
+    <h1 class="text-white" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">Score Section</h1>
+    <p class="lead text-white" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);">Game-wise Scoreboard</p>
+
+    {% if scores %}
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-hover table-light">
+            <thead>
+                <tr>
+                    <th>Game Name</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Played At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in scores %}
+                <tr>
+                    <td>{{ s[0] }}</td> <!-- game_name -->
+                    <td>{{ s[1] }}</td> <!-- player name -->
+                    <td>{{ s[2] }}</td> <!-- score -->
+                    <td>{{ s[3] }}</td> <!-- played_at -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-warning mt-4" role="alert">
+        <strong>No records yet!</strong> Scores will appear here once games are played.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

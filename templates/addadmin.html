@@ -1,0 +1,32 @@
+{% extends "headeradmin.html" %}
+
+{% block title %}Add Admin - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container mt-5 col-md-4">
+    <h2 class="text-center text-white">Add New Admin</h2>
+
+    <div class="card p-4">
+        <form action="{{ url_for('add_admin') }}" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <input type="hidden" name="role" value="admin">
+
+            <button type="submit" class="btn btn-success w-100">Add Admin</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

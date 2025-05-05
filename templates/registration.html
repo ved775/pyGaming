@@ -1,0 +1,50 @@
+{% extends "header.html" %}
+
+{% block title %}Register - PyGaming Hub{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-4">
+        <div class="card bg-dark bg-opacity-75 text-light shadow p-4">
+            <h3 class="text-center mb-4 text-white">Create an Account</h3>
+
+            <!-- Flash Messages for Registration -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('reg') }}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control bg-secondary bg-opacity-50 text-light border-0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control bg-secondary bg-opacity-50 text-light border-0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control bg-secondary bg-opacity-50 text-light border-0" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control bg-secondary bg-opacity-50 text-light border-0" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning">Register</button>
+                </div>
+                <div class="text-center mt-3">
+                    <p>Already have an account? <a href="{{ url_for('login') }}" class="text-primary">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

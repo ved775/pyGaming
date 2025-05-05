@@ -1,0 +1,15 @@
+{% extends "headerlogin.html" %}
+
+{% block title %}Home - PyGaming Hub{% endblock %}
+
+{% block content %}
+    <!-- Content Wrapper -->
+    <div class="content container text-center mt-5">
+        <h1 class="text-white" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">Welcome to PyGaming Hub</h1>
+        <p class="lead text-white" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);">
+            {{ session.get('user_email', 'Guest') }} | 
+            {{ session.get('user_role', 'Guest') }}
+        </p>
+        
+    </div>
+{% endblock %}
