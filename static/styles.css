@@ -1,0 +1,48 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;     
+}
+
+body {
+    background-image: url("../static/bg.jpg"); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(3px);
+    font-family: Arial, sans-serif;
+    color: white; 
+}
+
+.content {
+    flex: 1;
+}
+
+
+footer {
+    background: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    backdrop-filter: blur(25px);
+}
+
+.navbar {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    backdrop-filter: blur(25px);
+}
+
+
+
+
+
